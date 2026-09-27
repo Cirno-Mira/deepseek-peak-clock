@@ -222,12 +222,24 @@ try:
 except Exception as exc:
     check("解析失败时会抛异常", type(exc).__name__, "ValueError")
 
-section("10. 路径处理")
-check("app_dir 指向项目根", os.path.basename(app_dir()), "DeepseekPeakClock")
-check("app_path 拼在项目根下", os.path.dirname(app_path("x.json")), app_dir())
-check("resource_path 能定位到 core 包", os.path.isdir(resource_path("core")), True)
-check("icon_path 在没生成图标时返回空串或存在的文件",
-      icon_path() == "" or os.path.exists(icon_path()), True)
+section("10. 路径处理（源码运行与打包运行都要对）")
+import sys as _sys                                                # noqa: E402
+from core.paths import is_frozen                                  # noqa: E402
+
+print(f"  （当前：{'打包 exe' if is_frozen() else '源码'} 方式运行）")
+if is_frozen():
+    check("打包后 app_dir 就是 exe 所在目录", app_dir(),
+          os.path.dirname(os.path.abspath(_sys.executable)))
+else:
+    check("源码运行时 app_dir 指向项目根", os.path.basename(app_dir()),
+          "DeepseekPeakClock")
+check("app_path 一定拼在 app_dir 下", os.path.dirname(app_path("x.json")), app_dir())
+check("assets 作为随包资源能定位到", os.path.isdir(resource_path("assets")), True)
+print(f"        图标：{icon_path() or '(没找到)'}")
+check("图标资源真实存在", bool(icon_path()) and os.path.exists(icon_path()), True)
+print(f"        缓存：{R.cache_path()}")
+check("缓存文件也落在可写目录里",
+      os.path.dirname(R.cache_path()) in (app_dir(), os.path.expanduser("~")), True)
 
 section("11. 用「现在」实跑一遍")
 now = now_beijing()
