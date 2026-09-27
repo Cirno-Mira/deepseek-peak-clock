@@ -10,9 +10,12 @@ from __future__ import annotations
 from datetime import datetime, time as dtime, timedelta, timezone
 
 
+# 升版本只改 APP_VERSION 这一行；界面标题、README 和 Release 都以它为准。
+# APP_NAME / APP_ORG 同时是 QSettings 的存储键，改了用户设置会读不回来。
 APP_TITLE = "DeepSeek 峰谷时钟 · 梁文峰 / 梁文谷"
 APP_ORG = "DeepSeekTools"
 APP_NAME = "PeakValleyClock"
+APP_VERSION = "1.1.0"
 
 # ============================ 用户配置区 ============================
 
@@ -26,7 +29,8 @@ HOLIDAY_URLS = [
     "https://raw.githubusercontent.com/NateScarlet/holiday-cn/master/{year}.json",  # 备用源
 ]
 HTTP_TIMEOUT = 20
-USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) DeepSeekPeakClock/2.0"
+USER_AGENT = (f"Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+              f"DeepSeekPeakClock/{APP_VERSION}")
 
 # 缓存文件（优先和脚本放一起，不可写则退回用户目录）
 CACHE_NAME = ".deepseek_peak_clock_cache.json"

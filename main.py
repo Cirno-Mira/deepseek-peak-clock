@@ -30,8 +30,7 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-APP_NAME = "DeepseekPeakClock"
-APP_ORG = "DeepSeekTools"
+from core.config import APP_NAME, APP_ORG, APP_VERSION     # noqa: E402
 
 
 def _fix_stdio() -> None:
@@ -207,6 +206,7 @@ def main() -> int:
     app = QApplication(argv)
     app.setApplicationName(APP_NAME)
     app.setOrganizationName(APP_ORG)
+    app.setApplicationVersion(APP_VERSION)
     # 关掉窗口只是收进托盘，不该退出程序
     app.setQuitOnLastWindowClosed(False)
 

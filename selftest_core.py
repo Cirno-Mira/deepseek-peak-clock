@@ -231,8 +231,10 @@ if is_frozen():
     check("打包后 app_dir 就是 exe 所在目录", app_dir(),
           os.path.dirname(os.path.abspath(_sys.executable)))
 else:
-    check("源码运行时 app_dir 指向项目根", os.path.basename(app_dir()),
-          "DeepseekPeakClock")
+    # 项目目录叫什么由用户决定（改过名），所以拿本文件的位置反推，别写死
+    # （本文件就在项目根下，所以只需一层 dirname）
+    _expected_root = os.path.dirname(os.path.abspath(__file__))
+    check("源码运行时 app_dir 指向项目根", app_dir(), _expected_root)
 check("app_path 一定拼在 app_dir 下", os.path.dirname(app_path("x.json")), app_dir())
 check("assets 作为随包资源能定位到", os.path.isdir(resource_path("assets")), True)
 print(f"        图标：{icon_path() or '(没找到)'}")

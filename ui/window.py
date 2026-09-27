@@ -13,7 +13,7 @@ from PyQt5.QtWidgets import (QAction, QApplication, QCheckBox, QFrame, QGridLayo
                              QHBoxLayout, QLabel, QMenu, QProgressBar, QPushButton,
                              QScrollArea, QSpinBox, QSystemTrayIcon, QVBoxLayout,
                              QWidget)
-from core.config import APP_NAME, APP_ORG, APP_TITLE
+from core.config import APP_NAME, APP_ORG, APP_TITLE, APP_VERSION
 from core.engine import (WEEKDAYS, current_period, day_schedule_text, fmt_delta,
                          fmt_switch_time, human_delta, upcoming_switches)
 from core.rules import (ACTIVE, RUNTIME, apply_payload, load_cache, save_cache)
@@ -121,7 +121,7 @@ class PeakClockWindow(QWidget):
         col.setSpacing(2)
         title = QLabel("DeepSeek 峰谷时钟")
         title.setObjectName("H1")
-        sub = QLabel("梁文峰 & 梁文谷 的值班表 · 规则与节假日联网自动更新")
+        sub = QLabel(f"梁文峰 & 梁文谷 的值班表 · 规则与节假日联网自动更新　v{APP_VERSION}")
         sub.setObjectName("Sub")
         col.addWidget(title)
         col.addWidget(sub)

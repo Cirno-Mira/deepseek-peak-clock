@@ -1,6 +1,7 @@
 # DeepSeek 峰谷时钟 · DeepseekPeakClock
 
-浅色多巴胺风格的 PyQt5 桌面小工具，替你盯住 DeepSeek API 的**高峰 / 空闲（错峰）时段**：
+**当前版本 v1.1.0** ｜ 浅色多巴胺风格的 PyQt5 桌面小工具，替你盯住 DeepSeek API 的
+**高峰 / 空闲（错峰）时段**：
 
 ```
 高峰时段  ->  「梁文峰」值班（标准价）
@@ -16,6 +17,15 @@
 💰 价格对照表    空闲价 / 高峰价双列并排，模型与价格随官方页面自动更新
 🔄 规则自动更新  三级兜底：联网结果 -> 本地缓存 -> 内置默认值
 ```
+
+---
+
+## 界面预览
+
+![DeepSeek 峰谷时钟](docs/screenshot.png)
+
+截图是**空闲时段**的样子：值班大字卡是薄荷绿（梁文谷），
+切换到高峰时段会整体变成珊瑚粉（梁文峰）。
 
 ---
 
@@ -99,13 +109,15 @@ python main.py --fetch      # 只测联网获取，打印拿到的规则和价�
 ## 四、目录结构
 
 ```
-DeepseekPeakClock/
+deepseek-peak-clock/
 ├── main.py                 入口（自检调度、异常兜底、图标与任务栏分组）
 ├── theme.py                配色与 QSS
 ├── build_exe.py            一键打包单文件 exe
+├── 启动.vbs                无控制台窗口启动器
 ├── requirements.txt
 ├── LICENSE                 MIT
 ├── assets/                 图标资源（app.ico / app.png）
+├── docs/screenshot.png     README 里的界面截图
 ├── selftest_core.py        核心层自检
 ├── selftest_ui.py          界面层自检
 ├── tools/
