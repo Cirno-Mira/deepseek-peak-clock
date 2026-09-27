@@ -1,0 +1,15 @@
+# DeepSeek 峰谷时钟 依赖
+# 安装：
+#     pip install -r requirements.txt
+# 国内网络如果默认源慢，加： -i https://mirrors.aliyun.com/pypi/simple/
+
+PyQt5>=5.15        # 界面
+
+# 说明：
+# * 除了 PyQt5，其余全部用标准库（urllib 联网、json 缓存、QSettings 存设置），
+#   所以装完 PyQt5 就能跑，没有别的依赖。
+# * 联网只是用来更新峰谷规则、价格和节假日；断网时自动退回本地缓存，
+#   再退到内置默认值，功能不受影响。
+
+# 打包成单文件 exe 时还需要：
+# pyinstaller>=6.0
